@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { 
     getAuth,
+    signOut,
     signInWithEmailAndPassword
 } from 'firebase/auth';
 
@@ -28,6 +29,8 @@ const firebaseApp = initializeApp(firebaseConfig);
 export const db = getFirestore();
 export const auth = getAuth();
 
+export const signOutUser = async () => await signOut(auth);
+
 export const signInUserWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return; 
     return await signInWithEmailAndPassword(auth, email, password);
@@ -37,9 +40,8 @@ export const getUserDocumentFromAuth = async (
     userAuth, 
     additionalInformation = {}
   ) => {
-    const userDocRef = doc(db, 'users', userAuth.uid);
+    const userDocRef = doc(db, 'users', userAuth.user.uid);
     console.log(userDocRef);
     const userSnapshot = await getDoc(userDocRef);
-    console.log(`UserSnapshot -- ${userSnapshot}`);
     return userSnapshot
 }

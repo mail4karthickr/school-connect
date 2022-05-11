@@ -11,10 +11,10 @@ export const FormContainer = styled.div`
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     gap: 30px;
     background: lightblue;
+    padding-top: 90px;
 `
 
 export const Title = styled.h1`
@@ -33,4 +33,9 @@ export const Button = styled.button`
     width: 50%;
     height: 50px;
     cursor: pointer;
+`
+
+export const ErrorMessage = styled.div`
+    background-color: blue;
+    color: red;
 `
