@@ -1,10 +1,10 @@
-import './student-dashboard.styles.js';
+import { StudentDashboardContainer } from './student-dashboard.styles.js';
 import { useSelector } from 'react-redux';
-import { selectCurrentUser } from '../../store/user/user.selector';
-
+import StudentDashboardSideNav from '../../components/student-dashboard-sidenav/student-dashboard-sidenav.component';
 const StudentDashboard = () => {
-    const currentUser = useSelector(selectCurrentUser);
-    return <div>{`${currentUser.email}${currentUser.type}`}</div>
+    return (
+        <StudentDashboardSideNav />
+    );
 }
 
 export default StudentDashboard;

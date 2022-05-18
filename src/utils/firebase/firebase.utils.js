@@ -22,7 +22,7 @@ const firebaseConfig = {
     projectId: "schoolconnect-81a8a",
     storageBucket: "schoolconnect-81a8a.appspot.com",
     messagingSenderId: "877027650281",
-    appId: "1:877027650281:web:4f5b928aa24ed62aff1e78"
+    appId: "1:877027650281:web:4f5b928aa24ed62aff1e78",
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
