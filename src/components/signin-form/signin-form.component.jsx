@@ -18,8 +18,8 @@ import {
 import AppRoutes from '../../routes/app-routes.js';
 
 const defaultFormFields = {
-    email: '',
-    password: ''
+    email: 'mail4karthickr@gmail.com',
+    password: '$Katkarthickr87'
 }
 
 const SignInForm = () => {

@@ -4,5 +4,6 @@ export const StudentDashboardContainer = styled.div`
     max-height: 100vh;
     max-width: 100vw;
     background-color: green;
-    margin: auto;
+    display: flex;
+    position: relative;
 `;

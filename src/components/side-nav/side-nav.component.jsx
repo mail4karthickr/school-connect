@@ -5,10 +5,14 @@ import {
     ListIcon,
     CloseIcon
 } from './side-nav.styles.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const SideNav = (props) => {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        props.toggled(isOpen);
+    }, [isOpen]);
 
     const toggleHandler = () => {
         setIsOpen(!isOpen);

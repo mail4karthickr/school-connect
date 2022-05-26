@@ -1,20 +1,24 @@
 import { STUDENT_ACTION_TYPES } from './student.type';
+import SideNavOptions from '../../components/StudentSideNavOptions';
 
 const INITIAL_STATE = {
-    studentInfo: null,
+    subjects: [],
     isLoading: false,
-    error: null
+    error: null,
+    selectedTab: SideNavOptions.ASSIGNMENTS
 }
 
 export const studentReducer = (state = INITIAL_STATE, action) => {
     const { type, payload } = action;
     switch (type) {
-        case STUDENT_ACTION_TYPES.GET_STUDENT_INFO_START:
-            return { ...state, studentInfo: payload, isLoading: true }
-        case STUDENT_ACTION_TYPES.GET_STUDENT_INFO_SUCCESS:
-            return { ...state, studentInfo: payload, isLoading: false }
-        case STUDENT_ACTION_TYPES.GET_STUDENT_INFO_FAILED:
-            return { ...state, error: payload, isLoading: false }
+        case STUDENT_ACTION_TYPES.CHANGE_SELECTED_TAB:
+            return { ...state, selectedTab: payload }
+        case STUDENT_ACTION_TYPES.GET_SUBJECTS_START:
+            return { ...state, isLoading: true };
+        case STUDENT_ACTION_TYPES.GET_SUBJECTS_SUCCESS:
+            return { ...state, isLoading: false, subjects: payload.subjects };
+        case STUDENT_ACTION_TYPES.GET_SUBJECTS_ERROR:
+            return { ...state, isLoading: false, error: payload };
         default:
             return state
     }

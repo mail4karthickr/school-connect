@@ -7,3 +7,4 @@ export const Title = styled.div`
 export const SubTitle = styled.div`
     font-size: 0.9rem;
 `
+export const PrimaryButton = styled.div``

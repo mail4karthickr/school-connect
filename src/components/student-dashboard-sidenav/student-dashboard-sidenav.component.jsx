@@ -1,39 +1,57 @@
 import { 
     SideNavContainer,
     ProfilePic,
-    StudentInfo
+    StudentImageContainer,
+    StudentInfoContainer,
+    Button,
+    StudentInfoSideNav
 } from './student-dashboard-sidenav.styles.js';
 import {
     Title,
     SubTitle
 } from '../common.style.js';
-
-import SideNav from '../side-nav/side-nav.component';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCurrentUser } from '../../store/user/user.selector';
 import { 
-    GetStudentInfoStart
+    GetStudentInfoStart,
+    ChangedSelectedTab
  } from '../../store/student/student.action';
+ import StudentSideNavOptions from '../StudentSideNavOptions';
 
 const StudentDashboardSideNav = () => {
     const dispatch = useDispatch();
-    const currentUser = useSelector(selectCurrentUser);
+    const user = useSelector((state) => state.user.currentUser.info);
+    const [showInfo, setShowInfo] = useState(false);
 
-    useEffect(() =>{
-        dispatch(GetStudentInfoStart(currentUser.id));
-    }, [currentUser, dispatch]);
+    const toggled = (isOpen) => {
+        setShowInfo(isOpen);
+    }
+
+    const changedTab = (category) => {
+        dispatch(ChangedSelectedTab(category));
+    }
 
     return (
-        <SideNav>
+        <StudentInfoSideNav toggled={toggled}>
+        { showInfo && 
             <SideNavContainer>
-                <StudentInfo>
+                <StudentImageContainer>
                     <ProfilePic />
-                    <Title>{currentUser.displayName}</Title>
-                    <SubTitle>H4</SubTitle>
-                </StudentInfo>
+                    <Title>{user.displayName}</Title>
+                    <SubTitle>more</SubTitle>
+                </StudentImageContainer>
+                <StudentInfoContainer>
+                    {
+                        Object.keys(StudentSideNavOptions).map((category) => {
+                            const value = StudentSideNavOptions[category]
+                            return <Button onClick={() => {changedTab(value)}} key={category}>{value}</Button>
+                        })
+                    }
+                </StudentInfoContainer>
             </SideNavContainer>
-        </SideNav>
+        }
+        </StudentInfoSideNav>
     );
 }
 

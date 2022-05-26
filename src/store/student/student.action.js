@@ -1,17 +1,22 @@
 import { createAction } from '../../utils/reducer/reducer.utils';
 import { STUDENT_ACTION_TYPES } from './student.type.js';
 
-export const GetStudentInfoStart = (id) => createAction(
-    STUDENT_ACTION_TYPES.GET_STUDENT_INFO_START,
-    {id}
+export const ChangedSelectedTab = (selectedTab) => createAction(
+    STUDENT_ACTION_TYPES.CHANGE_SELECTED_TAB,
+    selectedTab
 )
 
-export const GetStudentInfoSuccess = (studentInfo) => createAction(
-    STUDENT_ACTION_TYPES.GET_STUDENT_INFO_SUCCESS,
-    studentInfo
+export const GetSubjectsStart = (className) => createAction(
+    STUDENT_ACTION_TYPES.GET_SUBJECTS_START,
+    className
 )
 
-export const GetStudentInfoFailed = (error) => createAction(
-    STUDENT_ACTION_TYPES.GET_STUDENT_INFO_FAILED,
+export const GetSubjectsSuccess = (subjects) => createAction(
+    STUDENT_ACTION_TYPES.GET_SUBJECTS_SUCCESS,
+    subjects
+)
+
+export const GetSubjectsFailed = (error) => createAction(
+    STUDENT_ACTION_TYPES.GET_SUBJECTS_FAILED,
     error
 )

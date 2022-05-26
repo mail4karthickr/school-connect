@@ -45,3 +45,15 @@ export const getUserDocumentFromAuth = async (
     const userSnapshot = await getDoc(userDocRef);
     return userSnapshot
 }
+
+export const getStudentDocument = async (id) => {
+    const studentsDocRef = doc(db, 'students', id);
+    const studentInfoSnapshot = await getDoc(studentsDocRef);
+    return studentInfoSnapshot
+}
+
+export const getSubjectsAsync = async (className) => {
+    const docRef = doc(db, 'subjects', className);
+    const snapShot = await getDoc(docRef);
+    return snapShot
+}

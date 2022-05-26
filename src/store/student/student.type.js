@@ -1,5 +1,6 @@
 export const STUDENT_ACTION_TYPES = {
-    GET_STUDENT_INFO_START: 'student/getStudentInfoStart',
-    GET_STUDENT_INFO_SUCCESS: 'student/getStudentInfoSuccess',
-    GET_STUDENT_INFO_FAILED: 'student/getStudentInfoFailed'
+    CHANGE_SELECTED_TAB: 'student/changeSelectedTab',
+    GET_SUBJECTS_START: 'student/getSubjectsStart',
+    GET_SUBJECTS_SUCCESS: 'student/getSubjectsSuccess',
+    GET_SUBJECTS_FAILED: 'student/getSubjectsFailed'
 }
