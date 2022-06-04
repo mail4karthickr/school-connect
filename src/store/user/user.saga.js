@@ -1,5 +1,5 @@
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { USER_ACTION_TYPES } from './user.type';
+import { USER_ACTION_TYPES } from './user.action';
 import { 
     signInUserWithEmailAndPassword, 
     getUserDocumentFromAuth,

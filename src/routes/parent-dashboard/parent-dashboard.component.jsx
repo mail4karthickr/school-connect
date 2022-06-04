@@ -1,9 +1,8 @@
 import './parent-dashboard.styles.js';
 import { useSelector } from 'react-redux';
-import { selectCurrentUser } from '../../store/user/user.selector';
 
 const ParentDashboard = () => {
-    const currentUser = useSelector(selectCurrentUser);
+    const currentUser = useSelector((state) => state.user.currentUser);
     <div>{`${currentUser.email}${currentUser.type}`}</div>
 }
 

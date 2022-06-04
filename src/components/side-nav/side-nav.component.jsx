@@ -8,10 +8,11 @@ import {
 import { useState, useEffect } from 'react';
 
 const SideNav = (props) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const { shouldOpen, toggled } = props;
+    const [isOpen, setIsOpen] = useState(shouldOpen);
 
     useEffect(() => {
-        props.toggled(isOpen);
+        toggled(isOpen);
     }, [isOpen]);
 
     const toggleHandler = () => {
@@ -19,10 +20,13 @@ const SideNav = (props) => {
     }
 
     return (
-        <SideNavContainer isOpen={isOpen}>
-            <IconContainer onClick={toggleHandler}>{isOpen ? <CloseIcon /> : <ListIcon /> }</IconContainer>
-            <ContentContainer>{props.children}</ContentContainer>
-        </SideNavContainer>
+        <>
+            <ListIcon onClick={toggleHandler} />
+            <SideNavContainer isOpen={isOpen}>
+                <IconContainer onClick={toggleHandler}><CloseIcon /></IconContainer>
+                <ContentContainer>{props.children}</ContentContainer>
+            </SideNavContainer>
+        </>
     );
 }
 

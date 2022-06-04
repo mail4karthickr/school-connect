@@ -3,15 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { SignInStart } from '../../store/user/user.action';
 import { useState, useEffect } from 'react';
-import { 
-    signOnUserIsLoading, 
-    selectSignOnError,
-    selectCurrentUser
-} from '../../store/user/user.selector';
+
 import { 
     FormContainer, 
     TextField, 
-    Title, 
+    Title,
     Button,
     ErrorMessage
 } from './signin-form.styles';
@@ -26,9 +22,11 @@ const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
     const dispatch = useDispatch();
-    const isLoading = useSelector(signOnUserIsLoading);
-    const isSignOnError = useSelector(selectSignOnError);
-    const currentUser = useSelector(selectCurrentUser);
+    const isLoading = useSelector((state) => state.user.isLoading);
+    const isSignOnError = useSelector((state) => state.user.error
+    );
+    const currentUser = useSelector((state) => state.user.currentUser
+    );
     const navigate = useNavigate();
 
     useEffect(() => {

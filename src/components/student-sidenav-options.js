@@ -3,7 +3,9 @@ const StudentSideNavOptions = {
     CALENDAR: 'Calendar',
     REQUEST_CENTER: 'RequestCenter',
     NOTIFICATIONS: 'Notifications',
-    TIME_TABLE: 'Timetable'
+    TIME_TABLE: 'Timetable',
+    STUDENT_INFO: `StudentInfo`,
+    SIGN_OFF: 'SignOff'
 }
 
 export default StudentSideNavOptions;

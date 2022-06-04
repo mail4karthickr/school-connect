@@ -1,13 +1,14 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { List, XLg } from 'react-bootstrap-icons';
 
 export const SideNavContainer = styled.div`
-    width: ${props => props.isOpen ? "250px" : "50px"};
+    width: 250px;
+    visibility: ${props => props.isOpen ? "visible" : "hidden"};
     height: 100vh;
     background-color: blue;
     display: flex;
     flex-direction: column;
-    transition: 0.4s ease-out;
+    position: absolute;
 `;
 
 export const IconContainer = styled.div`
@@ -29,12 +30,12 @@ const IconStyle = css`
 
     &:hover {
         color: black;
-        transition: 0.4s linear;
    }
 `
 
 export const ListIcon = styled(List)`
     ${IconStyle}
+    margin-top: 10px;
 `
 
 export const CloseIcon = styled(XLg)`

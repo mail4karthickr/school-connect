@@ -2,30 +2,36 @@ import {
     SideNavContainer,
     ProfilePic,
     StudentImageContainer,
-    StudentInfoContainer,
+    StudentInfoContainer as StudentOptionsContainer,
     Button,
-    StudentInfoSideNav
+    StudentInfoSideNav,
+    SideNavLink
 } from './student-dashboard-sidenav.styles.js';
 import {
     Title,
     SubTitle
 } from '../common.style.js';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCurrentUser } from '../../store/user/user.selector';
+import { Link } from 'react-router-dom';
 import { 
-    GetStudentInfoStart,
+    IsSideNavOpen,
     ChangedSelectedTab
  } from '../../store/student/student.action';
- import StudentSideNavOptions from '../StudentSideNavOptions';
+ import StudentSideNavOptions from '../student-sidenav-options';
+ import AppRoutes from '../../routes/app-routes';
 
 const StudentDashboardSideNav = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user.currentUser.info);
-    const [showInfo, setShowInfo] = useState(false);
+    const user = useSelector((state) => {
+        return state.user.currentUser.info
+    });
+    const isSideNavOpen = useSelector((state) => {
+        return state.student.isSideNavOpen
+    });
 
     const toggled = (isOpen) => {
-        setShowInfo(isOpen);
+        dispatch(IsSideNavOpen(isOpen));
     }
 
     const changedTab = (category) => {
@@ -33,24 +39,29 @@ const StudentDashboardSideNav = () => {
     }
 
     return (
-        <StudentInfoSideNav toggled={toggled}>
-        { showInfo && 
-            <SideNavContainer>
-                <StudentImageContainer>
-                    <ProfilePic />
-                    <Title>{user.displayName}</Title>
-                    <SubTitle>more</SubTitle>
-                </StudentImageContainer>
-                <StudentInfoContainer>
-                    {
-                        Object.keys(StudentSideNavOptions).map((category) => {
-                            const value = StudentSideNavOptions[category]
-                            return <Button onClick={() => {changedTab(value)}} key={category}>{value}</Button>
-                        })
-                    }
-                </StudentInfoContainer>
-            </SideNavContainer>
-        }
+        <StudentInfoSideNav toggled={toggled} key={isSideNavOpen} shouldOpen={isSideNavOpen}>
+        <SideNavContainer>
+        <StudentImageContainer>
+            <ProfilePic />
+            <Title>{user.displayName}</Title>
+            <SubTitle>{user.class}</SubTitle>
+            <SubTitle>{`RegNum: ${user.registerNumber}`}</SubTitle>
+        </StudentImageContainer>
+        <StudentOptionsContainer>
+            {
+                Object.keys(StudentSideNavOptions).map((category) => {
+                    const value = StudentSideNavOptions[category];
+                    const route = AppRoutes[category];
+                    return (
+                        <SideNavLink 
+                            to={route}
+                            onClick={() => changedTab(category)} 
+                            key={category}>{value}</SideNavLink>
+                    )
+                })
+            }
+        </StudentOptionsContainer>
+    </SideNavContainer>
         </StudentInfoSideNav>
     );
 }

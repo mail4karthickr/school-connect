@@ -1,7 +1,10 @@
-import { USER_ACTION_TYPES } from './user.type';
+import { USER_ACTION_TYPES } from './user.action';
+import { loadState } from '../../utils/localstorage';
+
+const persistedState = loadState();
 
 const INITIAL_STATE = {
-    currentUser: null,
+    currentUser: persistedState.user,
     isLoading: false,
     error: null
 }

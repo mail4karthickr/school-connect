@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import SideNav from '../side-nav/side-nav.component';
+import { Link } from 'react-router-dom';
 
 export const SideNavContainer = styled.div`
     margin: 0px;
@@ -46,7 +47,14 @@ export const Button = styled.button`
     }
 `
 export const StudentInfoSideNav = styled(SideNav)`
-    position: absolute;
+    padding: 100px;
+    top: 50px;
+    position: relative;
+    /* position: absolute;
     z-index: 1000;
-    background-color: yellow;
+    background-color: yellow; */
 `
+
+export const SideNavLink = styled(Link)`
+    text-decoration: none;
+`;

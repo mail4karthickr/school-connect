@@ -1,9 +1,8 @@
 import './staff-dashboard.styles.js';
 import { useSelector } from 'react-redux';
-import { selectCurrentUser } from '../../store/user/user.selector';
 
 const StaffDashboard = () => {
-    const currentUser = useSelector(selectCurrentUser);
+    const currentUser = useSelector((state) => state.user.currentUser);
     <div>{currentUser.email}</div>
 }
 

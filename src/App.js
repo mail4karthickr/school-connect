@@ -6,6 +6,13 @@ import ParentDashboard from './routes/parent-dashboard/parent-dashboard.componen
 import StaffDashboard from './routes/staff-dashboard/staff-dashboard.component.jsx';
 import PrivateRoute from './components/private-route/private-route.component.jsx';
 import AppRoutes from './routes/app-routes.js';
+import Assignments from './routes/assignments/assignments.component';
+import Calendar from './routes/calendar/calendar.component';
+import RequestCenter from './routes/request-center/request-center.component';
+import Notifications from './routes/notifications/notifications.component';
+import TimeTable from './routes/time-table/time-table.component';
+import StudentInfo from './routes/student-info/student-info.component';
+
 function App() {
   return (
     <Routes>
@@ -17,7 +24,48 @@ function App() {
             <StudentDashboard />
           </PrivateRoute>
         }
-      />
+      >
+        <Route 
+          path={AppRoutes.ASSIGNMENTS}
+          element={
+            <PrivateRoute>
+              <Assignments />
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          path={AppRoutes.CALENDAR}
+          element={
+            <PrivateRoute>
+              <Calendar />
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          path={AppRoutes.REQUEST_CENTER}
+          element={
+            <PrivateRoute>
+              <RequestCenter />
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          path={AppRoutes.TIME_TABLE}
+          element={
+            <PrivateRoute>
+             <TimeTable />
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          path={AppRoutes.STUDENT_INFO}
+          element={
+            <PrivateRoute>
+              <StudentInfo />
+            </PrivateRoute>
+          }
+        />
+      </Route>
       <Route 
         path={AppRoutes.PARENT_DASHBOARD}
         element={

@@ -1,29 +1,18 @@
 import { StudentDashboardContainer } from './student-dashboard.styles.js';
 import { useSelector } from 'react-redux';
+import { Outlet, Routes, Route} from 'react-router-dom';
 import StudentDashboardSideNav from '../../components/student-dashboard-sidenav/student-dashboard-sidenav.component';
-import Assignments from '../../components/assignments/assignment.component';
-import { getSelectedTab } from '../../store/student/student.selector';
-import StudentSideNavOptions from '../../components/StudentSideNavOptions';
-import Calendar  from '../../components/calendar/calendar.component';
+import StudentSideNavOptions from '../../components/student-sidenav-options';
+import Assignments from '../../routes/assignments/assignments.component';
+import AppRoutes from '../app-routes.js';
 
 const StudentDashboard = () => {
-    const selectedTab = useSelector(getSelectedTab);
+    const selectedTab = useSelector((state) => state.student.selectedTab);
 
-    const selectedComponent = () => {
-        switch(selectedTab) {
-            case StudentSideNavOptions.ASSIGNMENTS:
-                return <Assignments />;
-            case StudentSideNavOptions.CALENDAR:
-                return <Calendar />;
-            default:
-                return <Assignments />;
-        }
-    }
-    console.log("SelectedTab -- " + selectedTab);
     return (
         <StudentDashboardContainer>
             <StudentDashboardSideNav />
-            {selectedComponent()}
+            <Outlet />
         </StudentDashboardContainer>
     );
 }

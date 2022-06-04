@@ -3,6 +3,7 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import { rootReducer} from './root-reducer';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './root-saga';
+import { saveState } from '../utils/localstorage';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -22,3 +23,9 @@ const composedEnhancers = componseEnhancer(applyMiddleware(...middleWares));
 export const store = createStore(rootReducer, undefined, composedEnhancers)
 
 sagaMiddleware.run(rootSaga);
+
+store.subscribe(() => {
+    saveState({
+      user:store.getState().user.currentUser
+    });
+});
